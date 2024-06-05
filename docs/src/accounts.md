@@ -17,7 +17,7 @@
 - `force_transfer_to_contract`
 - `withdraw_to_base_layer`
 
-以下示例是针对 `Wallet` 账户的。`Predicate` 账户的工作方式类似，但在尝试花费其拥有的资源之前，您可能需要设置其谓词数据。
+以下示例是针对 `Wallet` 账户的。`Predicate` 账户的工作方式类似，但在尝试花费其拥有的资源之前，您可能需要设置其断言数据。
 
 使用 `wallet.transfer` 您可以启动一个交易，将资产从您的账户转移到目标地址。
 

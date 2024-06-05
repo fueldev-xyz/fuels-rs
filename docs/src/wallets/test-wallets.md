@@ -1,12 +1,14 @@
-# Setting up test wallets
+# 设置测试钱包
 
-You'll often want to create one or more test wallets when testing your contracts. Here's how to do it.
+在测试合约时，通常需要创建一个或多个测试钱包。以下是如何执行的。
 
-## Setting up multiple test wallets
+## 设置多个测试钱包
 
 <!-- This section should explain setting up multiple test wallets -->
 <!-- test_wallets:example:start -->
-If you need multiple test wallets, they can be set up using the `launch_custom_provider_and_get_wallets` method.
+
+如果您需要多个测试钱包，可以使用 `launch_custom_provider_and_get_wallets` 方法进行设置。
+
 <!-- test_wallets:example:end -->
 
 ```rust,ignore
@@ -15,7 +17,9 @@ If you need multiple test wallets, they can be set up using the `launch_custom_p
 
 <!-- This section should explain how to customize test wallets -->
 <!-- custom_test_wallets:example:start -->
-You can customize your test wallets via `WalletsConfig`.
+
+您可以通过 `WalletsConfig` 自定义测试钱包。
+
 <!-- custom_test_wallets:example:end -->
 
 ```rust,ignore
@@ -24,56 +28,56 @@ You can customize your test wallets via `WalletsConfig`.
 
 <!-- This section should explain that test wallets are deterministic -->
 <!-- deterministic:example:start -->
->**Note** Wallets generated with `launch_provider_and_get_wallet` or `launch_custom_provider_and_get_wallets`
-will have deterministic addresses.
+
+> **注意** 使用 `launch_provider_and_get_wallet` 或 `launch_custom_provider_and_get_wallets` 生成的钱包将具有确定性地址。
+
 <!-- deterministic:example:end -->
 
-## Setting up a test wallet with multiple random assets
+## 使用多个随机资产设置测试钱包
 
-You can create a test wallet containing multiple assets (including the base asset to pay for gas).
+您可以创建包含多个资产（包括用于支付 gas 的基本资产）的测试钱包。
 
 ```rust,ignore
 {{#include ../../../examples/wallets/src/lib.rs:multiple_assets_wallet}}
 ```
 
-- coins: `Vec<(UtxoId, Coin)>` has `num_assets` * `coins_per_assets` coins (UTXOs)
-- asset_ids: `Vec<AssetId>` contains the `num_assets` randomly generated `AssetId`s (always includes the base asset)
+- coins: `Vec<(UtxoId, Coin)>` 具有 `num_assets` \* `coins_per_assets` 个币（UTXO）
+- asset_ids: `Vec<AssetId>` 包含 `num_assets` 随机生成的 `AssetId`（始终包括基本资产）
 
-## Setting up a test wallet with multiple custom assets
+## 使用多个自定义资产设置测试钱包
 
-You can also create assets with specific `AssetId`s, coin amounts, and number of coins.
+您还可以创建具有特定 `AssetId`、币金额和币数量的资产。
 
 ```rust,ignore
 {{#include ../../../examples/wallets/src/lib.rs:custom_assets_wallet}}
 ```
 
-This can also be achieved directly with the `WalletsConfig`.
+这也可以直接通过 `WalletsConfig` 实现。
 
 ```rust,ignore
 {{#include ../../../examples/wallets/src/lib.rs:custom_assets_wallet_short}}
 ```
 
->**Note** In this case, you need to manually add the base asset and the corresponding number of
->coins and coin amount
+> **注意** 在这种情况下，您需要手动添加基本资产和相应的币数量和币金额
 
-## Setting up assets
+## 设置资产
 
-The Fuel blockchain holds many different assets; you can create your asset with its unique `AssetId` or create random assets for testing purposes.
+Fuel 区块链持有许多不同的资产；您可以使用其独特的 `AssetId` 创建您的资产，也可以为测试目的创建随机资产。
 
-You can use only one asset to pay for transaction fees and gas: the base asset, whose `AssetId` is `0x000...0`, a 32-byte zeroed value.
+您只能使用一个资产来支付交易费用和 gas：基本资产，其 `AssetId` 为 `0x000...0`，32 字节的零值。
 
-For testing purposes, you can configure coins and amounts for assets. You can use `setup_multiple_assets_coins`:
+对于测试目的，您可以配置资产的币和金额。您可以使用 `setup_multiple_assets_coins`：
 
 ```rust,ignore
 {{#include ../../../examples/wallets/src/lib.rs:multiple_assets_coins}}
 ```
 
->**Note** If setting up multiple assets, one of these assets will always be the base asset.
+> **注意** 如果设置多个资产，其中一个资产将始终是基本资产。
 
-If you want to create coins only with the base asset, then you can use:
+如果您只想使用基本资产创建币，则可以使用：
 
 ```rust,ignore
 {{#include ../../../examples/providers/src/lib.rs:setup_single_asset}}
 ```
 
->**Note** Choosing a large number of coins and assets for `setup_multiple_assets_coins` or `setup_single_asset_coins` can lead to considerable runtime for these methods. This will be improved in the future but for now, we recommend using up to **1_000_000** coins, or **1000** coins and assets simultaneously.
+> **注意** 选择大量的币和资产对 `setup_multiple_assets_coins` 或 `setup_single_asset_coins` 可能导致这些方法的运行时显着增加。这将在将来得到改进，但目前，我们建议同时使用最多 **1_000_000** 个币，或 **1000** 个币和资产。

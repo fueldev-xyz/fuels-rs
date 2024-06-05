@@ -1,18 +1,21 @@
-# Managing wallets
+# 管理钱包
 
-<!-- This section should explain in general how you can use a wallet in the SDK -->
+<!-- 此部分应简要解释如何在 SDK 中使用钱包 -->
 <!-- wallets:example:start -->
-You can use wallets for many important things, for instance:
 
-1. Checking your balance
-2. Transferring coins to a destination address or contract
-3. Signing messages and transactions
-4. Paying for network fees when sending transactions or deploying smart contracts
+您可以使用钱包进行许多重要操作，例如：
+
+1. 检查您的余额
+2. 将货币转移到目标地址或合约
+3. 签署消息和交易
+4. 在发送交易或部署智能合约时支付网络费用
 <!-- wallets:example:end -->
 
-The SDK gives you many different ways to create and access wallets. Let's explore these different approaches in the following sub-chapters.
+SDK 为您提供了许多创建和访问钱包的不同方式。让我们在以下子章节中探讨这些不同的方法。
 
-<!-- This section should provide best security practices for using wallets in the SDK -->
+<!-- 此部分应提供在 SDK 中使用钱包的最佳安全实践 -->
 <!-- security:example:start -->
-> **Note:** Keep in mind that you should never share your private/secret key. And in the case of wallets that were derived from a mnemonic phrase, never share your mnemonic phrase. If you're planning on storing the wallet on disk, do not store the plain private/secret key and do not store the plain mnemonic phrase. Instead, use `Wallet::encrypt` to encrypt its content first before saving it to disk.
+
+> **注意：** 请记住，永远不要分享您的私钥/密钥。对于由助记词短语衍生的钱包，请永远不要分享您的助记词短语。如果您打算将钱包存储在磁盘上，请不要存储明文私钥/密钥，也不要存储明文助记词短语。相反，请使用 `Wallet::encrypt` 将其内容加密后再保存到磁盘上。
+
 <!-- security:example:end -->

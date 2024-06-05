@@ -1,63 +1,50 @@
-# Wallet Access
+# 钱包访问
 
-<!-- This section should explain the difference between the different types of wallets -->
+<!-- 此部分应解释不同类型钱包之间的区别 -->
 <!-- wallet_types:example:start -->
-The kinds of operations we can perform with a `Wallet` instance depend on
-whether or not we have access to the wallet's private key.
 
-In order to differentiate between `Wallet` instances that know their private key
-and those that do not, we use the `WalletUnlocked` and `Wallet` types
-respectively.
+我们可以通过 `Wallet` 实例执行的操作的类型取决于我们是否可以访问钱包的私钥。
+
+为了区分那些知道它们的私钥和那些不知道的 `Wallet` 实例，我们分别使用 `WalletUnlocked` 和 `Wallet` 类型。
+
 <!-- wallet_types:example:end -->
 
-## Wallet States
+## 钱包状态
 
-<!-- This section should explain the unlocked wallet type -->
+<!-- 此部分应解释解锁的钱包类型 -->
 <!-- wallet_unlocked:example:start -->
-The `WalletUnlocked` type represents a wallet whose private key is known and
-stored internally in memory. A wallet must be of type `WalletUnlocked` in order
-to perform operations that involve signing messages or
-transactions.
-<!-- wallet_unlocked:example:end -->
-You can learn more about signing [here](./signing.md).
 
-<!-- This section should explain the locked wallet type -->
+`WalletUnlocked` 类型表示一个知道其私钥并且在内存中存储的钱包。为了执行涉及签名消息或交易的操作，钱包必须是 `WalletUnlocked` 类型。
+
+<!-- wallet_unlocked:example:end -->
+
+你可以在[这里](./signing.md)了解更多关于签名的内容。
+
+<!-- 此部分应解释锁定的钱包类型 -->
 <!-- wallet_locked:example:start -->
-The `Wallet` type represents a wallet whose private key is *not* known or stored
-in memory. Instead, `Wallet` only knows its public address. A `Wallet` cannot be
-used to sign transactions, however it may still perform a whole suite of useful
-operations including listing transactions, assets, querying balances, and so on.
+
+`Wallet` 类型表示一个私钥未知或未在内存中存储的钱包。相反，`Wallet` 只知道其公共地址。`Wallet` 不能用于签署交易，但它仍然可以执行一系列有用的操作，包括列出交易、资产、查询余额等等。
+
 <!-- wallet_locked:example:end -->
 
-Note that the `WalletUnlocked` type provides a `Deref` implementation targeting
-its inner `Wallet` type. This means that all methods available on the `Wallet`
-type are also available on the `WalletUnlocked` type. In other words,
-`WalletUnlocked` can be thought of as a thin wrapper around `Wallet` that
-provides greater access via its private key.
+注意，`WalletUnlocked` 类型提供了一个针对其内部 `Wallet` 类型的 `Deref` 实现。这意味着在 `Wallet` 类型上可用的所有方法也可以在 `WalletUnlocked` 类型上使用。换句话说，`WalletUnlocked` 可以被视为一个围绕 `Wallet` 的轻量包装，通过其私钥提供更大的访问权限。
 
-## Transitioning States
+## 状态转换
 
-A `Wallet` instance can be unlocked by providing the private key:
+可以通过提供私钥来解锁 `Wallet` 实例：
 
 ```rust,ignore
 let wallet_unlocked = wallet_locked.unlock(private_key);
 ```
 
-A `WalletUnlocked` instance can be locked using the `lock` method:
+可以使用 `lock` 方法锁定 `WalletUnlocked` 实例：
 
 ```rust,ignore
 let wallet_locked = wallet_unlocked.lock();
 ```
 
-Most wallet constructors that create or generate a new wallet are provided on
-the `WalletUnlocked` type. Consider locking the wallet with the `lock` method after the new private
-key has been handled in order to reduce the scope in which the wallet's private
-key is stored in memory.
+大多数创建或生成新钱包的钱包构造函数都提供在 `WalletUnlocked` 类型上。在处理了新的私钥后，考虑使用 `lock` 方法锁定钱包，以减少内存中存储钱包私钥的范围。
 
-## Design Guidelines
+## 设计准则
 
-When designing APIs that accept a wallet as an input, we should think carefully
-about the kind of access that we require. API developers should aim to minimise
-their usage of `WalletUnlocked` in order to ensure private keys are stored in
-memory no longer than necessary to reduce the surface area for attacks and
-vulnerabilities in downstream libraries and applications.
+在设计接受钱包作为输入的 API 时，我们应该仔细考虑我们需要的访问类型。API 开发人员应该尽量减少对 `WalletUnlocked` 的使用，以确保私钥在内存中的存储时间尽可能短，从而减少下游库和应用程序中攻击和漏洞的表面积。

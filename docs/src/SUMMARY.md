@@ -41,7 +41,7 @@
   - [成本估算](./calling-contracts/cost-estimation.md)
   - [低级调用](./calling-contracts/low-level-calls.md)
 - [运行脚本](./running-scripts.md)
-- [谓词](./predicates/index.md)
+- [断言](./predicates/index.md)
   - [签名示例](./predicates/send-spend-predicate.md)
 - [自定义交易](./custom-transactions/index.md)
   - [交易构建器](./custom-transactions/transaction-builders.md)

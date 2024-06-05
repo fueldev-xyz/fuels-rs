@@ -73,7 +73,7 @@ pub use shared_types::{/*..*/};
 
 ### 类型路径
 
-通常，在合约、脚本或谓词中使用库中的类型时，它们将直接生成在程序绑定的主 `mod` 下，即从库 `some_library` 导入的合约绑定中的类型将生成在 `abigen_bindings::my_contract_mod::SomeLibraryType` 下。
+通常，在合约、脚本或断言中使用库中的类型时，它们将直接生成在程序绑定的主 `mod` 下，即从库 `some_library` 导入的合约绑定中的类型将生成在 `abigen_bindings::my_contract_mod::SomeLibraryType` 下。
 
 如果您的程序的不同库中恰好有两个同名的类型，则可能会导致问题。
 
