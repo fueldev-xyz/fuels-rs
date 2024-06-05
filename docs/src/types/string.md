@@ -1,20 +1,20 @@
 # `String`
 
-The Rust SDK represents Fuel's `String`s as `SizedAsciiString<LEN>`, where the generic parameter `LEN` is the length of a given string. This abstraction is necessary because all strings in Fuel and Sway are statically-sized, i.e., you must know the size of the string beforehand.
+Rust SDK 将 Fuel 的`String`表示为`SizedAsciiString<LEN>`，其中泛型参数`LEN`是给定字符串的长度。这种抽象是必要的，因为 Fuel 和 Sway 中的所有字符串都是静态大小的，即你必须预先知道字符串的大小。
 
-Here's how you can create a simple string using `SizedAsciiString`:
+下面是使用`SizedAsciiString`创建简单字符串的方法：
 
 ```rust,ignore
 {{#include ../../../packages/fuels-core/src/types/core/sized_ascii_string.rs:string_simple_example}}
 ```
 
-To make working with `SizedAsciiString`s easier, you can use `try_into()` to convert from Rust's `String` to `SizedAsciiString`, and you can use `into()` to convert from `SizedAsciiString` to Rust's `String`. Here are a few examples:
+为了更轻松地使用`SizedAsciiString`，你可以使用`try_into()`将 Rust 的`String`转换为`SizedAsciiString`，并使用`into()`将`SizedAsciiString`转换为 Rust 的`String`。以下是一些示例：
 
 ```rust,ignore
 {{#include ../../../packages/fuels-core/src/types/core/sized_ascii_string.rs:conversion}}
 ```
 
-If your contract's method takes and returns, for instance, a Sway's `str[23]`. When using the SDK, this method will take and return a `SizedAsciiString<23>`, and you can pass a string to it like this:
+如果你的合约方法接受和返回 Sway 的`str[23]`，在使用 SDK 时，此方法将接受并返回`SizedAsciiString<23>`，你可以像这样向其传递字符串：
 
 ```rust,ignore
 {{#include ../../../e2e/tests/types_contracts.rs:contract_takes_string}}

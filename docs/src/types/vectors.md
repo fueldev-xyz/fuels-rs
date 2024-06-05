@@ -1,21 +1,21 @@
 # Vectors
 
-## Passing in vectors
+## 传递向量
 
-You can pass a Rust `std::vec::Vec` into your contract method transparently. The following code calls a Sway contract method which accepts a `Vec<SomeStruct<u32>>`.
+你可以透明地将 Rust 的`std::vec::Vec`传递到你的合约方法中。以下代码调用了一个接受`Vec<SomeStruct<u32>>`的 Sway 合约方法。
 
 ```rust,ignore
 {{#include ../../../e2e/tests/types_contracts.rs:passing_in_vec}}
 ```
 
-You can use a vector just like you would use any other type -- e.g. a `[Vec<u32>; 2]` or a `SomeStruct<Vec<Bits256>>` etc.
+你可以像使用任何其他类型一样使用向量--例如`[Vec<u32>; 2]`或`SomeStruct<Vec<Bits256>>`等。
 
-## Returning vectors
+## 返回向量
 
-Returning vectors from contract methods is supported transparently, with the caveat that you cannot have them nested inside another type. This limitation is temporary.
+从合约方法返回向量是支持的，但有一个限制，就是你不能将它们嵌套在另一个类型内部。这个限制是暂时的。
 
 ```rust,ignore
 {{#include ../../../e2e/tests/types_contracts.rs:returning_vec}}
 ```
 
-> **Note: you can still interact with contracts containing methods that return vectors nested inside another type, just not interact with the methods themselves**
+> **注意：你仍然可以与包含返回向量嵌套在另一个类型内部的方法的合约进行交互，只是不能与方法本身进行交互**

@@ -1,3 +1,3 @@
-# Types
+# 类型
 
-The FuelVM and Sway have many internal types. These types have equivalents in the SDK. This section discusses these types, how to use them, and how to convert them.
+FuelVM 和 Sway 都有许多内部类型。这些类型在 SDK 中有对应的表示。本节将讨论这些类型，如何使用它们以及如何进行转换。

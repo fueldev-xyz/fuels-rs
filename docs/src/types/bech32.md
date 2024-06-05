@@ -1,11 +1,11 @@
 # `Bech32`
 
-`Bech32Address` and `Bech32ContractId` enable the use of addresses and contract IDs in the `bech32` format. They can easily be converted to their counterparts `Address` and `ContractId`.
+`Bech32Address`和`Bech32ContractId`使得地址和合约 ID 可以以`bech32`格式使用。它们可以轻松地转换为它们的对应项`Address`和`ContractId`。
 
-Here are the main ways of creating a `Bech32Address`, but note that the same applies to `Bech32ContractId`:
+以下是创建`Bech32Address`的主要方法，但请注意，同样适用于`Bech32ContractId`：
 
 ```rust,ignore
 {{#include ../../../examples/types/src/lib.rs:bech32}}
 ```
 
-> **Note:** when creating a `Bech32Address` from `Address` or `Bech32ContractId` from `ContractId` the `HRP` (Human-Readable Part) is set to **"fuel"** per default.
+> **注意：**当从`Address`或`ContractId`创建`Bech32Address`或`Bech32ContractId`时，`HRP`（可读部分）默认设置为 **"fuel"**。

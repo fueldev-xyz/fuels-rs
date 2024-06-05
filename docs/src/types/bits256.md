@@ -1,14 +1,14 @@
 # `Bits256`
 
-In Fuel, a type called `b256` represents hashes and holds a 256-bit value. The Rust SDK represents `b256` as `Bits256(value)` where `value` is a `[u8; 32]`. If your contract method takes a `b256` as input, you must pass a `Bits256([u8; 32])` when calling it from the SDK.
+在 Fuel 中，称为 `b256` 的类型表示哈希并保存一个 256 位值。Rust SDK 将 `b256` 表示为 `Bits256(value)`，其中 `value` 是 `[u8; 32]`。如果您的合约方法接受 `b256` 作为输入，则在从 SDK 调用时必须传递 `Bits256([u8; 32])`。
 
-Here's an example:
+下面是一个示例：
 
 ```rust,ignore
 {{#include ../../../e2e/tests/types_contracts.rs:256_arg}}
 ```
 
-If you have a hexadecimal value as a string and wish to convert it to `Bits256`, you may do so with `from_hex_str`:
+如果您有一个十六进制值作为字符串，并希望将其转换为 `Bits256`，可以使用 `from_hex_str` 来实现：
 
 ```rust,ignore
 {{#include ../../../packages/fuels-core/src/types/core/bits.rs:from_hex_str}}

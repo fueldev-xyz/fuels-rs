@@ -1,19 +1,19 @@
 # `Bytes32`
 
-In Sway and the FuelVM, `Bytes32` represents hashes. They hold a 256-bit (32-byte) value. `Bytes32` is a wrapper on a 32-sized slice of `u8`: `pub struct Bytes32([u8; 32]);`.
+在 Sway 和 FuelVM 中，`Bytes32` 表示哈希。它们保存一个 256 位（32 字节）的值。`Bytes32` 是对 `u8` 的大小为 32 的切片的包装器：`pub struct Bytes32([u8; 32]);`。
 
-These are the main ways of creating a `Bytes32`:
+以下是创建 `Bytes32` 的主要方法：
 
 ```rust,ignore
 {{#include ../../../examples/types/src/lib.rs:bytes32}}
 ```
 
-`Bytes32` also implements the `fmt` module's `Debug`, `Display`, `LowerHex` and `UpperHex` traits. For example, you can get the display and hex representations with:
+`Bytes32` 还实现了 `fmt` 模块的 `Debug`、`Display`、`LowerHex` 和 `UpperHex` 特性。例如，您可以使用以下代码获取显示和十六进制表示：
 
 ```rust,ignore
 {{#include ../../../examples/types/src/lib.rs:bytes32_format}}
 ```
 
-For a full list of implemented methods and traits, see the [fuel-types documentation](https://docs.rs/fuel-types/latest/fuel_types/struct.Bytes32.html).
+有关已实现的方法和特性的完整列表，请参阅 [fuel-types 文档](https://docs.rs/fuel-types/latest/fuel_types/struct.Bytes32.html)。
 
-> **Note:** In Fuel, there's a special type called `b256`, which is similar to `Bytes32`; also used to represent hashes, and it holds a 256-bit value. In Rust, through the SDK, this is represented as `Bits256(value)` where `value` is a `[u8; 32]`. If your contract method takes a `b256` as input, all you need to do is pass a `Bits256([u8; 32])` when calling it from the SDK.
+> **注意：** 在 Fuel 中，还有一种特殊类型叫做 `b256`，它类似于 `Bytes32`；也用于表示哈希，并且保存一个 256 位的值。在 Rust 中，通过 SDK，这被表示为 `Bits256(value)`，其中 `value` 是 `[u8; 32]`。如果您的合约方法接受 `b256` 作为输入，那么在从 SDK 调用时，您只需要传递 `Bits256([u8; 32])`。
