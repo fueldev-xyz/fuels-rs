@@ -1,8 +1,8 @@
-# Integration tests structure in `fuels-rs`
+# `fuels-rs` 中的集成测试结构
 
-The integration tests of `fuels-rs` cover almost all aspects of the SDK and have grown significantly as more functionality was added. To make the tests and associated `Sway` projects more manageable they were split into several categories. A category consist of a `.rs` file for the tests and, if needed, a separate directory for the `Sway` projects.
+`fuels-rs` 的集成测试涵盖了 SDK 的几乎所有方面，并随着功能的增加而不断增长。为了使测试和相关的 `Sway` 项目更易于管理，它们被分成了几个类别。每个类别都包含一个用于测试的 `.rs` 文件，以及如果需要的话，一个用于 `Sway` 项目的单独目录。
 
-Currently have the following structure:
+当前的结构如下。
 
 ```shell
   .
@@ -24,9 +24,9 @@ Currently have the following structure:
   └─  wallets.rs
 ```
 
-Even though test organization is subjective, please consider these guidelines before adding a new category:
+即使测试组织是主观的，在添加新类别之前，请考虑以下准则：
 
-- Add a new category when creating a new section in the `Fuels Rust SDK` book - e.g. `Types`
-- Add a new category if there are more than 3 test and more than 100 lines of code and they form a group of tests - e.g. `storage.rs`
+- 当在 `Fuels Rust SDK` 书中创建新章节时，请添加新类别，例如 `Types`
+- 如果有超过 3 个测试和超过 100 行代码，并且它们形成了一个测试组，请添加新类别，例如 `storage.rs`
 
- Otherwise, we recommend putting the integration test inside the existing categories above.
+否则，我们建议将集成测试放在上述现有类别中。

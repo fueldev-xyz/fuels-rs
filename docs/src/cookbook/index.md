@@ -1,5 +1,5 @@
 # Cookbook
 
-This section covers more advanced use cases that can be satisfied by combining various features of the Rust SDK. As such, it assumes that you have already made yourself familiar with the previous chapters of this book.
+本节涵盖了使用 Rust SDK 结合各种功能实现的更高级用例。因此，它假定您已经熟悉了本书的前几章内容。
 
-> **Note** This section is still a work in progress and more recipes may be added in the future.
+> **注意** 本节仍在不断完善中，将来可能会添加更多的 cookbook。

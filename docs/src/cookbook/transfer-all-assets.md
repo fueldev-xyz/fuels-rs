@@ -1,24 +1,24 @@
-# Transfer all assets
+# 转移所有资产
 
-The `transfer()` method lets you transfer a single asset, but what if you needed to move all of your assets to a different wallet? You could repeatably call `transfer()`, initiating a transaction each time, or you bundle all the transfers into a single transaction. This chapter guides you through crafting your custom transaction for transferring all assets owned by a wallet.
+`transfer()` 方法让您可以转移单个资产，但如果您需要将所有资产移动到另一个钱包呢？您可以重复调用 `transfer()` 方法，每次启动一个交易，或者将所有转移捆绑到一个交易中。本章将指导您如何创建自定义交易，用于转移钱包拥有的所有资产。
 
-Lets quickly go over the setup:
+首先，让我们快速设置环境：
 
 ```rust,ignore
 {{#include ../../../examples/cookbook/src/lib.rs:transfer_multiple_setup}}
 ```
 
-We prepare two wallets with randomized addresses. Next, we want one of our wallets to have some random assets, so we set them up with `setup_multiple_assets_coins()`. Having created the coins, we can start a provider and assign it to the previously created wallets.
+我们创建了两个带有随机地址的钱包。接下来，我们希望其中一个钱包拥有一些随机资产，因此我们使用 `setup_multiple_assets_coins()` 方法为其设置了资产。创建了这些资产后，我们启动了一个提供程序，并将其分配给之前创建的钱包。
 
-Transactions require us to define input and output coins. Let's assume we do not know the assets owned by `wallet_1`. We retrieve its balances, i.e. tuples consisting of a string representing the asset ID and the respective amount. This lets us use the helpers `get_asset_inputs_for_amount()`, `get_asset_outputs_for_amount()` to create the appropriate inputs and outputs.
+交易需要定义输入和输出币。假设我们不知道 `wallet_1` 拥有哪些资产。我们检索其余额，即由资产 ID 和相应金额组成的元组。这使我们可以使用助手函数 `get_asset_inputs_for_amount()` 和 `get_asset_outputs_for_amount()` 来创建适当的输入和输出。
 
-For the sake of simplicity, we avoid transferring the base asset so we don't have to worry about transaction fees:
+为了简单起见，我们避免转移基础资产，以免担心交易费用：
 
 ```rust,ignore
 {{#include ../../../examples/cookbook/src/lib.rs:transfer_multiple_input}}
 ```
 
-All that is left is to build the transaction via `ScriptTransactionBuilder`, have `wallet_1` sign it, and we can send it. We confirm this by checking the number of balances present in the receiving wallet and their amount:
+现在，唯一剩下的就是构建交易了。我们使用 `ScriptTransactionBuilder` 构建交易，由 `wallet_1` 签名后发送。我们通过检查接收钱包中的余额数量和金额来确认交易已成功：
 
 ```rust,ignore
 {{#include ../../../examples/cookbook/src/lib.rs:transfer_multiple_transaction}}

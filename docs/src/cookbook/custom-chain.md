@@ -1,27 +1,26 @@
-# Custom chain
+# 自定义链
 
-This example demonstrates how to start a short-lived Fuel node with custom consensus parameters for the underlying chain.
+该示例演示了如何为底层链启动一个具有自定义共识参数的短暂 Fuel 节点。
 
-First, we have to import `ConsensusParameters` and `ChainConfig`:
+首先，我们需要导入 `ConsensusParameters` 和 `ChainConfig`：
 
 ```rust,ignore
 {{#include ../../../examples/cookbook/src/lib.rs:custom_chain_import}}
 ```
 
-Next, we can define some values for the consensus parameters:
+接下来，我们可以为共识参数定义一些值：
 
 ```rust,ignore
 {{#include ../../../examples/cookbook/src/lib.rs:custom_chain_consensus}}
 ```
 
-Before we can start a node, we probably also want to define some genesis coins and assign them to an address:
+在启动节点之前，我们可能还想定义一些初始代币，并将它们分配给一个地址：
 
 ```rust,ignore
 {{#include ../../../examples/cookbook/src/lib.rs:custom_chain_coins}}
 ```
 
-Finally, we call `setup_test_provider()`, which starts a node with the given configurations and returns a
-provider attached to that node:
+最后，我们调用 `setup_test_provider()`，它会使用给定的配置启动一个节点，并返回与该节点关联的提供程序：
 
 ```rust,ignore
 {{#include ../../../examples/cookbook/src/lib.rs:custom_chain_provider}}
