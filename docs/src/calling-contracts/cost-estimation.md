@@ -1,12 +1,12 @@
-# Estimating contract call cost
+# 估算合约调用成本
 
-With the function `estimate_transaction_cost(tolerance: Option<f64>, block_horizon: Option<u32>)` provided by `ContractCallHandler` and `MultiContractCallHandler`, you can get a cost estimation for a specific call. The return type, `TransactionCost`, is a struct that contains relevant information for the estimation:
+通过 `ContractCallHandler` 和 `MultiContractCallHandler` 提供的函数 `estimate_transaction_cost(tolerance: Option<f64>, block_horizon: Option<u32>)`，您可以获得特定调用的成本估算。返回类型 `TransactionCost` 是一个包含相关信息的结构体，用于估算：
 
 ```rust,ignore
 {{#include ../../../packages/fuels-accounts/src/provider.rs:transaction_cost}}
 ```
 
-Below are examples that show how to get the estimated transaction cost from single and multi call transactions.
+下面是显示如何从单个和多个调用事务获取估计事务成本的示例。
 
 ```rust,ignore
 {{#include ../../../examples/contracts/src/lib.rs:contract_call_cost_estimation}}
@@ -16,6 +16,6 @@ Below are examples that show how to get the estimated transaction cost from sing
 {{#include ../../../examples/contracts/src/lib.rs:multi_call_cost_estimation}}
 ```
 
-The transaction cost estimation can be used to set the gas limit for an actual call, or to show the user the estimated cost.
+事务成本估算可用于设置实际调用的燃料限制，或向用户显示估算成本。
 
-> **Note** The same estimation interface is available for scripts.
+> **注意**：脚本也具有相同的估算接口。

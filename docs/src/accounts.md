@@ -1,40 +1,40 @@
-# Accounts
+# 账户
 
-The `ViewOnlyAccount` trait provides a common interface to query balances.
+`ViewOnlyAccount` trait 提供了一个通用接口来查询余额。
 
-The `Account` trait, in addition to the above, also provides a common interface to retrieve spendable resources or transfer assets. When performing actions in the SDK that lead to a transaction, you will typically need to provide an account that will be used to allocate resources required by the transaction, including transaction fees.
+`Account` trait 除了上述功能之外，还提供了一个通用接口来检索可花费的资源或转移资产。在执行 SDK 中导致交易的操作时，通常需要提供一个账户，该账户将用于分配交易所需的资源，包括交易费用。
 
-Both traits are implemented by the following types:
+这两个 trait 都由以下类型实现：
 
-- [Wallet](./wallets/index.md)
+- [钱包](./wallets/index.md)
 - [Predicate](./predicates/index.md)
 
-## Transferring assets
+## 转移资产
 
-An account implements the following methods for transferring assets:
+一个账户实现了以下方法来转移资产：
 
 - `transfer`
 - `force_transfer_to_contract`
 - `withdraw_to_base_layer`
 
-The following examples are provided for a `Wallet` account. A `Predicate` account would work similarly, but you might need to set its predicate data before attempting to spend resources owned by it.
+以下示例是针对 `Wallet` 账户的。`Predicate` 账户的工作方式类似，但在尝试花费其拥有的资源之前，您可能需要设置其谓词数据。
 
-With `wallet.transfer` you can initiate a transaction to transfer an asset from your account to a target address.
+使用 `wallet.transfer` 您可以启动一个交易，将资产从您的账户转移到目标地址。
 
 ```rust,ignore
 {{#include ../../examples/wallets/src/lib.rs:wallet_transfer}}
 ```
 
-You can transfer assets to a contract via `wallet.force_transfer_to_contract`.
+您可以通过 `wallet.force_transfer_to_contract` 将资产转移到合约。
 
 ```rust,ignore
 {{#include ../../examples/wallets/src/lib.rs:wallet_contract_transfer}}
 ```
 
-For transferring assets to the base layer chain, you can use `wallet.withdraw_to_base_layer`.
+要将资产转移到基础层链，您可以使用 `wallet.withdraw_to_base_layer`。
 
 ```rust,ignore
 {{#include ../../examples/wallets/src/lib.rs:wallet_withdraw_to_base}}
 ```
 
-The above example creates an `Address` from a string and converts it to a `Bech32Address`. Next, it calls `wallet.withdraw_to_base_layer` by providing the address, the amount to be transferred, and the transaction policies. Lastly, to verify that the transfer succeeded, the relevant message proof is retrieved with `provider.get_message_proof,` and the amount and the recipient are verified.
+上面的示例从字符串创建了一个 `Address` 并将其转换为 `Bech32Address`。接下来，它通过提供地址、要转移的金额和交易策略来调用 `wallet.withdraw_to_base_layer`。最后，为了验证转移是否成功，使用 `provider.get_message_proof` 检索相关的消息证明，并验证金额和接收方。

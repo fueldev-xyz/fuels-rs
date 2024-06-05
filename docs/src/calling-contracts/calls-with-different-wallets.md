@@ -1,12 +1,14 @@
-# Calls with different wallets
+# 使用不同钱包进行调用
 
-<!-- This section should explain how to call a contract with a certain wallet -->
+<!-- 这一部分应该解释如何使用特定钱包调用合约 -->
 <!-- wallet:example:start -->
-You can use the `with_account()` method on an existing contract instance as a shorthand for creating a new instance connected to the provided wallet. This lets you make contracts calls with different wallets in a chain like fashion.
+
+您可以在现有合约实例上使用 `with_account()` 方法，作为创建一个连接到提供的钱包的新实例的简写。这样可以让您以链式的方式使用不同的钱包进行合约调用。
+
 <!-- wallet:example:end-->
 
 ```rust,ignore
 {{#include ../../../examples/contracts/src/lib.rs:connect_wallet}}
 ```
 
-> **Note:** connecting a different wallet to an existing instance ignores its set provider in favor of the provider used to deploy the contract. If you have two wallets connected to separate providers (each communicating with a separate fuel-core), the one assigned to the deploying wallet will also be used for contract calls. This behavior is only relevant if multiple providers (i.e. fuel-core instances) are present and can otherwise be ignored.
+> **注意：** 将不同的钱包连接到现有实例会忽略其设置的提供程序，而是使用用于部署合约的提供程序。如果有两个钱包连接到不同的提供程序（每个提供程序与一个独立的 fuel-core 通信），则分配给部署钱包的提供程序也将用于合约调用。这种行为仅在存在多个提供程序（即 fuel-core 实例）并且可以忽略其他情况下才相关。

@@ -1,11 +1,13 @@
-# The JSON ABI file
+# JSON ABI 文件
 
-<!-- This section should talk about the importance of the ABI -->
+<!-- 该部分应讨论 ABI 的重要性 -->
 <!-- abi:example:start -->
-Whether you want to deploy or connect to a pre-existing smart contract, the JSON ABI file is extremely important: it's what tells the SDK about the [ABI methods](https://docs.fuel.network/guides/quickstart/building-a-smart-contract/#abi) in your smart contracts.
+
+无论您是想部署还是连接到现有的智能合约，JSON ABI 文件都非常重要：它告诉 SDK 您的智能合约中的[ABI 方法](https://docs.fueldev.xyz/guides/quickstart/building-a-smart-contract/#abi)。
+
 <!-- abi:example:end -->
 
-For the same example Sway code as above:
+对于与上面相同的 Sway 代码示例：
 
 ```Rust
 contract;
@@ -21,7 +23,7 @@ impl MyContract for Contract {
 }
 ```
 
-The JSON ABI file looks like this:
+JSON ABI 文件如下所示：
 
 ```json
 $ cat out/release/my-test-abi.json
@@ -41,4 +43,4 @@ $ cat out/release/my-test-abi.json
 ]
 ```
 
-The Fuel Rust SDK will take this file as input and generate equivalent methods (and custom types if applicable) that you can call from your Rust code.
+Fuel Rust SDK 将以此文件作为输入，并生成相应的方法（如果适用，还包括自定义类型），您可以从 Rust 代码中调用这些方法。

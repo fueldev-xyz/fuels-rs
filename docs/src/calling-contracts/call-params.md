@@ -1,24 +1,26 @@
-# Call parameters
+# 调用参数
 
-<!-- This section should explain what the call params are and how to configure them -->
+<!-- 该部分应解释调用参数是什么以及如何配置它们 -->
 <!-- call_params:example:start -->
-The parameters for a contract call are:
 
-1. Amount
-2. Asset ID
-3. Gas forwarded
+合约调用的参数包括：
+
+1. 金额
+2. 资产 ID
+3. 转发的 Gas
 <!-- call_params:example:end -->
 
-You can use these to forward coins to a contract. You can configure these parameters by creating an instance of [`CallParameters`](https://docs.rs/fuels/latest/fuels/programs/contract/struct.CallParameters.html) and passing it to a chain method called `call_params`.
+您可以使用这些参数将资金转发到合约。您可以通过创建 [`CallParameters`](https://docs.rs/fuels/latest/fuels/programs/contract/struct.CallParameters.html) 的实例并将其传递给名为 `call_params` 的链式方法来配置这些参数。
+
 <!-- use_call_params:example:end -->
 
-For instance, suppose the following contract that uses Sway's `msg_amount()` to return the amount sent in that transaction.
+例如，假设以下合约使用 Sway 的 `msg_amount()` 返回在该交易中发送的金额。
 
 ```rust,ignore
 {{#include ../../../e2e/sway/contracts/contract_test/src/main.sw:msg_amount}}
 ```
 
-Then, in Rust, after setting up and deploying the above contract, you can configure the amount being sent in the transaction like this:
+然后，在 Rust 中，在设置和部署上述合约后，您可以像这样配置发送交易中的金额：
 
 ```rust,ignore
 {{#include ../../../examples/contracts/src/lib.rs:call_parameters}}
@@ -26,23 +28,26 @@ Then, in Rust, after setting up and deploying the above contract, you can config
 
 <!-- This section should explain why `call_params` returns a result -->
 <!-- payable:example:start -->
-`call_params` returns a result to ensure you don't forward assets to a contract method that isn't payable.
+
+`call_params` 返回一个结果以确保您不会向一个非可支付的合约方法转发资产。
+
 <!-- payable:example:end -->
-In the following example, we try to forward an amount of `100` of the base asset to `non_payable`. As its name suggests, `non_payable` isn't annotated with `#[payable]` in the contract code. Passing `CallParameters` with an amount other than `0` leads to an error:
+
+在以下示例中，我们尝试向 `non_payable` 转发 `100` 个基本资产。正如其名称所示，`non_payable` 在合约代码中未被注释为 `#[payable]`。使用除 `0` 外的金额传递 `CallParameters` 会导致错误：
 
 ```rust,ignore
 {{#include ../../../e2e/tests/contracts.rs:non_payable_params}}
 ```
 
-> **Note:** forwarding gas to a contract call is always possible, regardless of the contract method being non-payable.
+> **注意:** 无论合约方法是否为非可支付，都可以向合约调用转发 Gas。
 
-You can also use `CallParameters::default()` to use the default values:
+您还可以使用 `CallParameters::default()` 来使用默认值：
 
 ```rust,ignore
 {{#include ../../../packages/fuels-core/src/utils/constants.rs:default_call_parameters}}
 ```
 
-This way:
+这样：
 
 ```rust,ignore
 {{#include ../../../examples/contracts/src/lib.rs:call_parameters_default}}
@@ -50,7 +55,9 @@ This way:
 
 <!-- This section should explain what the `gas_forwarded` parameter does -->
 <!-- gas:example:start -->
-The `gas_forwarded` parameter defines the limit for the actual contract call as opposed to the gas limit for the whole transaction. This means that it is constrained by the transaction limit. If it is set to an amount greater than the available gas, all available gas will be forwarded.
+
+`gas_forwarded` 参数定义了实际合约调用的限制，而不是整个交易的 gas 限制。这意味着它受到交易限制的约束。如果设置为大于可用 gas 的金额，则会转发所有可用 gas。
+
 <!-- gas:example:end -->
 
 ```rust,ignore
@@ -59,5 +66,7 @@ The `gas_forwarded` parameter defines the limit for the actual contract call as 
 
 <!-- This section should explain the default forwarding behavior for a call -->
 <!-- forwarding:example:start -->
-If you don't set the call parameters or use `CallParameters::default()`, the transaction gas limit will be forwarded instead.
+
+如果您没有设置调用参数或使用 `CallParameters::default()`，则会转发交易的 gas 限制。
+
 <!-- forwarding:example:end -->

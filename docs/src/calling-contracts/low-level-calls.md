@@ -1,32 +1,31 @@
-# Low-level calls
+# 低级调用
 
-<!-- This section should explain what low-level calls are and how to do them -->
-With low-level calls, you can specify the parameters of your calls at runtime and make indirect calls through other contracts.
+通过低级调用，您可以在运行时指定调用的参数，并通过其他合约进行间接调用。
 
-Your caller contract should call `std::low_level_call::call_with_function_selector`, providing:
+您的调用合约应调用 `std::low_level_call::call_with_function_selector`，并提供：
 
-- target contract ID
-- function selector encoded as `Bytes`
-- calldata encoded as `Bytes`
-- whether the calldata contains only a single value argument (e.g. a `u64`)
+- 目标合约 ID
+- 作为 `Bytes` 编码的函数选择器
+- 作为 `Bytes` 编码的调用数据
+- 调用数据是否仅包含单个值参数（例如 `u64`）
 - `std::low_level_call::CallParams`
 
 ```rust,ignore
 {{#include ../../../e2e/sway/contracts/low_level_caller/src/main.sw:low_level_call_contract}}
 ```
 
-On the SDK side, you can construct an encoded function selector using `fuels::core::encode_fn_selector`, and encoded calldata using the `fuels::core::calldata!` macro.
+在 SDK 方面，您可以使用 `fuels::core::encode_fn_selector` 构造编码的函数选择器，并使用 `fuels::core::calldata!` 宏构造编码的调用数据。
 
-E.g. to call the following function on the target contract:
+例如，要调用目标合约上的以下函数：
 
 ```rust,ignore
 {{#include ../../../e2e/sway/contracts/contract_test/src/main.sw:low_level_call}}
 ```
 
-you would construct the function selector and the calldata as such, and provide them to the caller contract (like the one above):
+您可以构造函数选择器和调用数据，并将它们提供给调用合约（就像上面的例子一样）：
 
 ```rust,ignore
 {{#include ../../../examples/contracts/src/lib.rs:low_level_call}}
 ```
 
-> Note: the `calldata!` macro uses the default `EncoderConfig` configuration under the hood.
+> 注意：`calldata!` 宏在内部使用默认的 `EncoderConfig` 配置。

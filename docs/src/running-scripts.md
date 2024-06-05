@@ -1,58 +1,59 @@
-# Running scripts
+# 运行脚本
 
-You can run a script using its JSON-ABI and the path to its binary file. You can run the scripts with arguments. For this, you have to use the `abigen!` macro seen [previously](./abigen/the-abigen-macro.md).
+您可以使用脚本的 JSON-ABI 和其二进制文件的路径来运行脚本。您可以带参数运行脚本。为此，您必须使用之前见过的 `abigen!` 宏。
 
-````rust,ignore
+```rust,ignore
 {{#include ../../e2e/tests/scripts.rs:script_with_arguments}}
-````
+```
 
-Furthermore, if you need to separate submission from value retrieval for any reason, you can do so as follows:
+此外，如果出于任何原因需要将提交与值检索分开，您可以这样做：
 
 ```rust,ignore
 {{#include ../../e2e/tests/scripts.rs:submit_response_script}}
 ```
 
-## Running scripts with transaction policies
+## 使用事务策略运行脚本
 
-The method for passing transaction policies is the same as [with contracts](./calling-contracts/tx-policies.md). As a reminder, the workflow would look like this:
+传递事务策略的方法与[合约](./calling-contracts/tx-policies.md)相同。作为提醒，工作流程如下：
 
 ```rust,ignore
 {{#include ../../e2e/tests/scripts.rs:script_with_tx_policies}}
 ```
 
-## Logs
+## 日志
 
-Script calls provide the same logging functions, `decode_logs()` and `decode_logs_with_type<T>()`, as contract calls. As a reminder, the workflow looks like this:
+脚本调用提供与合约调用相同的日志功能，`decode_logs()` 和 `decode_logs_with_type<T>()`。作为提醒，工作流程如下：
 
 ```rust,ignore
 {{#include ../../e2e/tests/logs.rs:script_logs}}
 ```
 
-## Calling contracts from scripts
+## 从脚本调用合约
 
-Scripts use the same interfaces for setting external contracts as [contract methods](./calling-contracts/other-contracts.md).
+脚本使用与[合约方法](./calling-contracts/other-contracts.md)相同的接口来设置外部合约。
 
-Below is an example that uses `with_contracts(&[&contract_instance, ...])`.
+以下是使用 `with_contracts(&[&contract_instance, ...])` 的示例。
 
 ```rust,ignore
 {{#include ../../e2e/tests/logs.rs:external_contract}}
 ```
 
-And this is an example that uses `with_contract_ids(&[&contract_id, ...])`.
+这是使用 `with_contract_ids(&[&contract_id, ...])` 的示例。
 
 ```rust,ignore
 {{#include ../../e2e/tests/logs.rs:external_contract_ids}}
 ```
 
-## Configurable constants
+## 可配置的常量
 
-Same as contracts, you can define `configurable` constants in `scripts` which can be changed during the script execution. Here is an example how the constants are defined.
+与合约一样，您可以在 `scripts` 中定义可配置的常量，这些常量可以在脚本执行过程中进行更改。以下是定义常量的示例。
 
 ```rust,ignore
 {{#include ../../e2e/sway/scripts/script_configurables/src/main.sw}}
 ```
 
-Each configurable constant will get a dedicated `with` method in the SDK. For example, the constant `STR_4` will get the `with_STR_4` method which accepts the same type defined in sway. Below is an example where we chain several `with` methods and execute the script with the new constants.
+每个可配置的常量都将在 SDK 中获得一个专用的 `with` 方法。例如，常量 `STR_4` 将获得 `with_STR_4` 方法，该方法接受与 sway 中定义的相同类型。以下是一个示例，其中我们链式调用了多个 `with` 方法，并使用新的常量执行了脚本。
 
 ```rust,ignore
 {{#include ../../e2e/tests/configurables.rs:script_configurables}}
+```

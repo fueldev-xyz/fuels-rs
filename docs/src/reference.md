@@ -1,3 +1,3 @@
-# API Reference
+# API 参考
 
-For a more in-depth look at the APIs provided by the Fuel Rust SDK, head over to the [official documentation](https://docs.rs/fuels/latest/fuels/). In the actual Rust docs, you can see the most up-to-date information about the API, which is synced with the code as it changes.
+要深入了解 Fuel Rust SDK 提供的 API，请访问[官方文档](https://docs.rs/fuels/latest/fuels/)。在实际的 Rust 文档中，您可以查看关于 API 的最新信息，该信息与代码同步更改。

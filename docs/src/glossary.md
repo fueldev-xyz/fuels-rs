@@ -1,22 +1,28 @@
-# Glossary
+# 术语表
 
-## Contract
+## 合约
 
-<!-- This section should define a contract -->
+<!-- 此部分应定义合约 -->
 <!-- rs_contract:example:start -->
-A contract, in the SDK, is an abstraction that represents a connection to a specific smart contract deployed on the Fuel Network. This contract instance can be used as a regular Rust object, with methods attached to it that reflect those in its smart contract equivalent.
+
+在 SDK 中，合约是表示与 Fuel 网络上特定智能合约的连接的抽象。此合约实例可以像常规的 Rust 对象一样使用，具有附加到其上的方法，这些方法反映了其智能合约等效物中的方法。
+
 <!-- rs_contract:example:end -->
 
-## Provider
+## 提供者
 
-<!-- This section should define a provider -->
+<!-- 此部分应定义提供者 -->
 <!-- rs_provider:example:start -->
-A Provider is a struct that provides an abstraction for a connection to a Fuel node. It provides read-only access to the node. You can use this provider as-is or through the wallet.
+
+提供者是提供对 Fuel 节点连接的抽象的结构。它提供对节点的只读访问。您可以直接使用此提供者或通过钱包使用它。
+
 <!-- rs_provider:example:end -->
 
-## Wallet and signer
+## 钱包和签名者
 
-<!-- This section should define a wallet and signer -->
+<!-- 此部分应定义钱包和签名者 -->
 <!-- rs_wallet_signer:example:start -->
-A `Wallet` is a struct with direct or indirect access to a private key. You can use a `Wallet` to sign messages and transactions to authorize the network to charge your account to perform operations. The terms wallet and signer in the SDK are often used interchangeably, but, technically, a `Signer` is simply a Rust trait to enable the signing of transactions and messages; the `Wallet` implements the `Signer` trait.
+
+`Wallet` 是一个具有直接或间接访问私钥的结构。您可以使用 `Wallet` 对消息和交易进行签名，以授权网络从您的帐户中扣款来执行操作。在 SDK 中，术语钱包和签名者通常可以互换使用，但从技术上讲，`Signer` 只是一个 Rust 特征，用于启用对交易和消息的签名；`Wallet` 实现了 `Signer` 特征。
+
 <!-- rs_wallet_signer:example:end -->

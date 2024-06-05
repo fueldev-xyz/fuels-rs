@@ -1,41 +1,45 @@
-# Transaction policies
+# 交易策略
 
-<!-- This section should explain what tx policies are and how to configure them -->
+<!-- 本节应解释什么是交易策略以及如何配置它们 -->
 <!-- tx_policies:example:start -->
-Transaction policies are defined as follows:
+
+交易策略定义如下：
 
 ```rust,ignore
 {{#include ../../../packages/fuels-core/src/types/wrappers/transaction.rs:tx_policies_struct}}
 ```
 
-Where:
+其中：
 
-1. **Tip** - amount to pay the block producer to prioritize the transaction.
-2. **Witness Limit** - The maximum amount of witness data allowed for the transaction.
-3. **Maturity** - Block until which the transaction cannot be included.
-4. **Max Fee** - The maximum fee payable by this transaction.
-5. **Script Gas Limit** - The maximum amount of gas the transaction may consume for executing its script code.
+1. **小费（Tip）** - 用于支付区块生产者以优先处理交易的金额。
+2. **见证数据限制（Witness Limit）** - 交易允许的最大见证数据量。
+3. **成熟度（Maturity）** - 交易无法包含在此区块之后的区块中。
+4. **最大费用（Max Fee）** - 此交易可支付的最大费用。
+5. **脚本 Gas 限制（Script Gas Limit）** - 交易在执行其脚本代码时可以消耗的最大 Gas 量。
 
-When the **Script Gas Limit** is not set, the Rust SDK will estimate the consumed gas in the background and set it as the limit.
+当未设置**脚本 Gas 限制**时，Rust SDK 将在后台估算消耗的 Gas 并将其设置为限制。
 
-If the **Witness Limit** is not set, the SDK will set it to the size of all witnesses and signatures defined in the transaction builder.
+如果未设置**见证数据限制**，SDK 将其设置为交易生成器中定义的所有见证和签名的大小。
 
-You can configure these parameters by creating an instance of `TxPolicies` and passing it to a chain method called `with_tx_policies`:
+您可以通过创建`TxPolicies`实例并将其传递给名为`with_tx_policies`的链式方法来配置这些参数：
+
 <!-- tx_policies:example:end-->
 
 ```rust,ignore
 {{#include ../../../examples/contracts/src/lib.rs:tx_policies}}
 ```
 
-<!-- This section should explain how to use the default tx policy -->
+<!-- 本节应解释如何使用默认交易策略 -->
 <!-- tx_policies_default:example:start -->
-You can also use `TxPolicies::default()` to use the default values.
+
+您还可以使用`TxPolicies::default()`来使用默认值。
+
 <!-- tx_policies_default:example:end -->
 
-This way:
+如下所示：
 
 ```rust,ignore
 {{#include ../../../examples/contracts/src/lib.rs:tx_policies_default}}
 ```
 
-As you might have noticed, `TxPolicies` can also be specified when deploying contracts or transferring assets by passing it to the respective methods.
+正如您可能已经注意到的，`TxPolicies`也可以在部署合约或转移资产时通过将其传递给相应的方法来指定。

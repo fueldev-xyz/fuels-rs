@@ -1,24 +1,24 @@
-# Calling contracts
+# 调用合约
 
-Once you've deployed your contract, as seen in the previous sections, you'll likely want to:
+一旦您部署了您的合约，就像在前面的部分中看到的那样，您可能希望：
 
-1. Call contract methods;
-2. Configure call parameters and transaction policies;
-3. Forward coins and gas in your contract calls;
-4. Read and interpret returned values and logs.
+1. 调用合约方法；
+2. 配置调用参数和交易策略；
+3. 在合约调用中转发货币和燃料；
+4. 读取和解释返回的值和日志。
 
-Here's an example. Suppose your Sway contract has two ABI methods called `initialize_counter(u64)` and `increment_counter(u64)`. Once you've deployed it the contract, you can call these methods like this:
+下面是一个示例。假设您的 Sway 合约有两个名为 `initialize_counter(u64)` 和 `increment_counter(u64)` 的 ABI 方法。一旦您部署了该合约，您可以像这样调用这些方法：
 
 ```rust,ignore
 {{#include ../../../examples/contracts/src/lib.rs:use_deployed_contract}}
 ```
 
-The example above uses all the default configurations and performs a simple contract call.
+上面的示例使用了所有默认配置，并执行了一个简单的合约调用。
 
-Furthermore, if you need to separate submission from value retrieval for any reason, you can do so as follows:
+此外，如果出于任何原因您需要将提交与值检索分开，您可以像下面这样操作：
 
 ```rust,ignore
 {{#include ../../../examples/contracts/src/lib.rs:submit_response_contract}}
 ```
 
-Next, we'll see how we can further configure the many different parameters in a contract call.
+接下来，我们将看到如何进一步配置合约调用中的许多不同参数。

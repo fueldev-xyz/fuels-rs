@@ -1,15 +1,17 @@
-# Generating bindings with abigen
+# 使用 abigen 生成绑定
 
-You might have noticed this snippet in the previous sections:
+在之前的部分中，您可能已经注意到了这个代码片段：
 
 ```rust,ignore
 {{#include ../../../examples/contracts/src/lib.rs:abigen_example}}
 ```
 
-<!-- This section should explain the purpose of the abigen -->
+<!-- 本部分应解释 abigen 的目的 -->
 <!-- abigen:example:start -->
-The SDK lets you transform ABI methods of a smart contract, specified as JSON objects (which you can get from [Forc](https://github.com/FuelLabs/sway/tree/master/forc)), into Rust structs and methods that are type-checked at compile time.
-In order to call your contracts, scripts or predicates, you first need to generate the Rust bindings for them.
+
+SDK 允许您将智能合约的 ABI 方法转换为 Rust 结构和方法，这些方法由 JSON 对象指定（您可以从 [Forc](https://github.com/FuelLabs/sway/tree/master/forc) 获取）。这些 Rust 结构和方法在编译时进行类型检查。
+要调用您的合约、脚本或谓词，您首先需要为它们生成 Rust 绑定。
+
 <!-- abigen:example:end -->
 
-The following subsections contain more details about the `abigen!` syntax and the code generated from it.
+以下小节包含有关 `abigen!` 语法及其生成的代码的更多细节。
