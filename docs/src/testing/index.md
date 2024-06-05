@@ -1,7 +1,7 @@
-# `fuels-rs` Testing
+# `fuels-rs` 测试
 
-> **note** This section is still a work in progress.
+> **注意**：这一部分仍在不断完善中。
 
-- [Testing Basics](./basics.md)
-- [`setup_program_test!` Macro](./the-setup-program-test-macro.md)
-- [Tweaking the Blockchain](./chains.md)
+- [测试基础知识](./basics.md)
+- [`setup_program_test!` 宏](./the-setup-program-test-macro.md)
+- [调整区块链](./chains.md)

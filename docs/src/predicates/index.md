@@ -1,55 +1,56 @@
-# Predicates
+# 谓词
 
-Predicates, in Sway, are programs that return a Boolean value and do not have any side effects (they are pure). A predicate address can own assets. The predicate address is generated from the compiled byte code and is the same as the `P2SH` address used in Bitcoin. Users can seamlessly send assets to the predicate address as they do for any other address. To spend the predicate funds, the user has to provide the original `byte code` of the predicate together with the `predicate data`. The `predicate data` will be used when executing the `byte code`, and the funds can be transferred if the predicate is validated successfully.
+在 Sway 中，谓词是返回布尔值且没有任何副作用（它们是纯粹的）的程序。谓词地址可以拥有资产。谓词地址是从编译后的字节码生成的，与比特币中使用的 `P2SH` 地址相同。用户可以像发送给任何其他地址一样无缝地将资产发送到谓词地址。要花费谓词资金，用户必须提供谓词的原始 `byte code` 和 `谓词数据`。在执行 `byte code` 时将使用 `谓词数据`，如果谓词成功验证，则可以转移资金。
 
-## Instantiating predicates
+## 实例化谓词
 
-Let's consider the following predicate example:
+让我们考虑以下谓词示例：
 
 ```rust,ignore
 {{#include ../../../e2e/sway/predicates/basic_predicate/src/main.sw}}
 ```
 
-We will look at a complete example of using the SDK to send and receive funds from a predicate.
+我们将看到一个完整的示例，使用 SDK 从谓词中发送和接收资金。
 
-First, we set up the wallets and a node instance. The call to the `abigen!` macro will generate all the types specified in the predicate plus two custom structs:
+首先，我们设置钱包和一个节点实例。调用 `abigen!` 宏将为我们生成谓词中指定的所有类型，以及两个自定义结构体：
 
-- an encoder with an `encode_data`  function that will conveniently encode all the arguments of the main function for us.
-- a configurables struct which holds methods for setting all the configurables mentioned in the predicate
+- 一个编码器，带有一个 `encode_data` 函数，可以方便地为我们编码主函数的所有参数。
+- 一个可配置结构，其中包含设置谓词中提到的所有可配置项的方法
 
-> Note: The `abigen!` macro will append `Encoder` and `Configurables` to the predicate's `name` field. Fox example, `name="MyPredicate"` will result in two structs called `MyPredicateEncoder` and `MyPredicateConfigurables`.
+> 注意：`abigen!` 宏将向谓词的 `name` 字段附加 `Encoder` 和 `Configurables`。例如，`name="MyPredicate"` 将导致两个名为 `MyPredicateEncoder` 和 `MyPredicateConfigurables` 的结构体。
 
 ```rust,ignore
 {{#include ../../../examples/predicates/src/lib.rs:predicate_data_setup}}
 ```
 
-Once we've compiled our predicate with `forc build`, we can create a `Predicate` instance via `Predicate::load_from`. The resulting data from `encode_data` can then be set on the loaded predicate.
+一旦我们使用 `forc build` 编译了我们的谓词，我们就可以通过 `Predicate::load_from` 创建一个 `Predicate` 实例。然后可以将 `encode_data` 的结果设置到加载的谓词上。
 
 ```rust,ignore
 {{#include ../../../examples/predicates/src/lib.rs:with_predicate_data}}
 ```
 
-Next, we lock some assets in this predicate using the first wallet:
+接下来，使用第一个钱包在此谓词中锁定一些资产：
 
 ```rust,ignore
 {{#include ../../../examples/predicates/src/lib.rs:predicate_data_lock_amount}}
 ```
 
-Then we can transfer assets owned by the predicate via the [Account](../accounts.md) trait:
+然后，我们可以通过 [Account](../accounts.md) 特性转移由谓词拥有的资产：
 
 ```rust,ignore
 {{#include ../../../examples/predicates/src/lib.rs:predicate_data_unlock}}
 ```
 
-## Configurable constants
+## 可配置常量
 
-Same as contracts and scripts, you can define configurable constants in `predicates`, which can be changed during the predicate execution. Here is an example of how the constants are defined.
+与合约和脚本一样，您可以在 `predicates` 中定义可配置常量，在谓词执行期间可以更改。以下是定义常量的示例。
 
 ```rust,ignore
 {{#include ../../../e2e/sway/predicates/predicate_configurables/src/main.sw:predicate_configurables}}
 ```
 
-Each configurable constant will get a dedicated `with` method in the SDK. For example, the constant `U8` will get the `with_U8` method which accepts the same type defined in sway. Below is an example where we chain several `with` methods and update the predicate with the new constants.
+每个可配置常量在 SDK 中都会获得一个专用的 `with` 方法。例如，常量 `U8` 将获得名为 `with_U8` 的方法，该方法接受 sway 中定义的相同类型。下面是一个示例，其中我们链接了几个 `with` 方法，并使用新的常量更新了谓词。
 
 ```rust,ignore
 {{#include ../../../e2e/tests/predicates.rs:predicate_configurables}}
+```

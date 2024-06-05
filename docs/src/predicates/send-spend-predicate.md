@@ -1,36 +1,36 @@
-# Signatures in predicates example
+# 谓词中的签名示例
 
-This is a more involved example where the predicate accepts three signatures and matches them to three predefined public keys. The `ec_recover_address` function is used to recover the public key from the signatures. If two of the three extracted public keys match the predefined public keys, the funds can be spent. Note that the signature order has to match the order of the predefined public keys.
+这是一个更复杂的示例，其中谓词接受三个签名并将它们与三个预定义的公钥匹配。`ec_recover_address` 函数用于从签名中恢复公钥。如果三个中提取的公钥中有两个与预定义的公钥匹配，则可以花费资金。请注意，签名顺序必须与预定义的公钥顺序相匹配。
 
 ```rust,ignore
 {{#include ../../../e2e/sway/predicates/signatures/src/main.sw}}
 ```
 
-Let's use the SDK to interact with the predicate. First, let's create three wallets with specific keys. Their hashed public keys are already hard-coded in the predicate. Then we create the receiver wallet, which we will use to spend the predicate funds.
+让我们使用 SDK 与谓词交互。首先，让我们创建三个具有特定密钥的钱包。它们的哈希公钥已硬编码在谓词中。然后我们创建接收方钱包，我们将使用它来花费谓词资金。
 
 ```rust,ignore
 {{#include ../../../examples/predicates/src/lib.rs:predicate_wallets}}
 ```
 
-Next, let's add some coins, start a provider and connect it with the wallets.
+接下来，让我们添加一些硬币，启动一个提供程序，并将其与钱包连接起来。
 
 ```rust,ignore
 {{#include ../../../examples/predicates/src/lib.rs:predicate_coins}}
 ```
 
-Now we can use the predicate abigen to create a predicate encoder instance for us. To spend the funds now locked in the predicate, we must provide two out of three signatures whose public keys match the ones we defined in the predicate. In this example, the signatures are generated from an array of zeros.
+现在我们可以使用谓词 abigen 为我们创建一个谓词编码器实例。要现在花费锁定在谓词中的资金，我们必须提供两个签名，其公钥与我们在谓词中定义的公钥相匹配。在这个示例中，签名是从一个零数组生成的。
 
 ```rust,ignore
 {{#include ../../../examples/predicates/src/lib.rs:predicate_load}}
 ```
 
-Next, we transfer some assets from a wallet to the created predicate. We also confirm that the funds are indeed transferred.
+接下来，我们将一些资产从一个钱包转移到创建的谓词中。我们还确认资金确实已转移。
 
 ```rust,ignore
 {{#include ../../../examples/predicates/src/lib.rs:predicate_receive}}
 ```
 
-We can use the `transfer` method from the [Account](../accounts.md) trait to transfer the assets. If the predicate data is correct, the `receiver` wallet will get the funds, and we will verify that the amount is correct.
+我们可以使用 [Account](../accounts.md) 特性中的 `transfer` 方法来转移资产。如果谓词数据正确，则 `receiver` 钱包将获得资金，我们将验证金额是否正确。
 
 ```rust,ignore
 {{#include ../../../examples/predicates/src/lib.rs:predicate_spend}}
