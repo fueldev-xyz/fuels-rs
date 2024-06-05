@@ -1,11 +1,11 @@
 # RocksDB
 
-RocksDB enables the preservation of the blockchain's state locally, facilitating its future utilization.
+RocksDB 可以在本地保存区块链的状态，以便将来使用。
 
-To create or use a local database, follow these instructions:
+要创建或使用本地数据库，请按照以下说明操作：
 
 ```rust,ignore
 {{#include ../../../examples/cookbook/src/lib.rs:create_or_use_rocksdb}}
 ```
 
-> Note: If the specified database does not exist, a new database will be created at that path. To utilize the code snippets above, either the `fuel-core` binary must be present, or both the `fuel-core-lib` and `rocksdb` features need to be enabled.
+> 注意：如果指定的数据库不存在，则会在该路径下创建一个新的数据库。要使用上述代码片段，必须存在 `fuel-core` 二进制文件，或者必须同时启用 `fuel-core-lib` 和 `rocksdb` 功能。

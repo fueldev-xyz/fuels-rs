@@ -1,5 +1,5 @@
-# `fuels-rs` Rust Workspaces
+# `fuels-rs` Rust 工作区
 
-This section gives you a little overview of the role and function of every workspace in the `fuels-rs` repository.
+本节为您概述 `fuels-rs` 仓库中每个工作区的角色和功能。
 
 - [`fuels-abi-cli`](./fuels-abi-cli.md)

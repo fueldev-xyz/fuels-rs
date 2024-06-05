@@ -1,45 +1,45 @@
-# Querying the blockchain
+# 查询区块链
 
-Once you set up a provider, you can interact with the Fuel blockchain. Here are a few examples of what you can do with a provider; for a more in-depth overview of the API, check the [official provider API documentation](https://docs.rs/fuels/latest/fuels/accounts/provider/struct.Provider.html).
+一旦您设置了提供程序，就可以与 Fuel 区块链进行交互。以下是您可以使用提供程序执行的一些操作示例；有关 API 的更详细概述，请查阅[官方提供程序 API 文档](https://docs.rs/fuels/latest/fuels/accounts/provider/struct.Provider.html)。
 
-- [Set up](#set-up)
-- [Get all coins from an address](#get-all-coins-from-an-address)
-- [Get spendable resources owned by an address](#get-spendable-resources-owned-by-an-address)
-- [Get balances from an address](#get-balances-from-an-address)
+- [设置](#设置)
+- [从地址获取所有币](#从地址获取所有币)
+- [获取地址拥有的可花费资源](#获取地址拥有的可花费资源)
+- [从地址获取余额](#从地址获取余额)
 
-## Set up
+## 设置
 
-You might need to set up a test blockchain first. You can skip this step if you're connecting to an external blockchain.
+您可能需要首先设置一个测试区块链。如果您连接到外部区块链，则可以跳过此步骤。
 
 ```rust,ignore
 {{#include ../../../examples/providers/src/lib.rs:setup_test_blockchain}}
 ```
 
-## Get all coins from an address
+## 从地址获取所有币
 
-This method returns all unspent coins (of a given asset ID) from a wallet.
+此方法返回钱包中所有未使用的币（特定资产 ID 的）。
 
 ```rust,ignore
 {{#include ../../../examples/providers/src/lib.rs:get_coins}}
 ```
 
-## Get spendable resources owned by an address
+## 获取地址拥有的可花费资源
 
-The following example shows how to fetch resources owned by an address. First, you create a  `ResourceFilter` which specifies the target address, asset ID, and amount. You can also define UTXO IDs and message IDs that should be excluded when retrieving the resources:
+以下示例显示了如何获取地址拥有的资源。首先，您创建一个 `ResourceFilter`，其中指定了目标地址、资产 ID 和金额。您还可以定义在检索资源时应排除的 UTXO ID 和消息 ID：
 
 ```rust,ignore
 {{#include ../../../packages/fuels-accounts/src/provider.rs:resource_filter}}
 ```
 
-The example uses default values for the asset ID and the exclusion lists. This resolves to the base asset ID and empty vectors for the ID lists respectively:
+该示例使用了资产 ID 和排除列表的默认值。这分别解析为基本资产 ID 和空向量用于 ID 列表：
 
 ```rust,ignore
 {{#include ../../../examples/providers/src/lib.rs:get_spendable_resources}}
 ```
 
-## Get balances from an address
+## 从地址获取余额
 
-Get all the spendable balances of all assets for an address. This is different from getting the coins because we only return the numbers (the sum of UTXOs coins amount for each asset ID) and not the UTXOs coins themselves.
+获取地址的所有资产的可花费余额。这与获取币不同，因为我们只返回数字（每个资产 ID 的 UTXOs 币金额之和），而不是 UTXOs 币本身。
 
 ```rust,ignore
 {{#include ../../../examples/providers/src/lib.rs:get_balances}}
