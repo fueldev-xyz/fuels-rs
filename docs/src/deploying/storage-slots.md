@@ -1,12 +1,12 @@
-# Overriding storage slots
+# 覆盖存储槽
 
-If you use storage in your contract, the default storage values will be generated in a JSON file (e.g. `my_contract-storage_slots.json`) by the Sway compiler. These are loaded automatically for you when you load a contract binary. If you wish to override some of the defaults, you need to provide the corresponding storage slots manually:
+如果您的合约中使用了存储槽，Sway 编译器将生成默认的存储值，并以 JSON 文件（例如 `my_contract-storage_slots.json`）的形式提供。当您加载合约二进制文件时，这些值将自动加载。如果您希望覆盖某些默认值，则需要手动提供相应的存储槽：
 
 ```rust,ignore
 {{#include ../../../examples/contracts/src/lib.rs:storage_slots_override}}
 ```
 
-If you don't have the slot storage file (`my_contract-storage_slots.json` example from above) for some reason, or you don't wish to load any of the default values, you can disable the auto-loading of storage slots:
+如果由于某种原因您没有存储槽文件（例如上述示例中的 `my_contract-storage_slots.json`），或者您不希望加载任何默认值，则可以禁用自动加载存储槽：
 
 ```rust,ignore
 {{#include ../../../examples/contracts/src/lib.rs:storage_slots_disable_autoload}}

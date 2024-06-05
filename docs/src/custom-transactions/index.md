@@ -1,3 +1,3 @@
-# Custom transactions
+# 自定义交易
 
-Until now, we have used helpers to create transactions, send them with a provider, and parse the results. However, sometimes we must make custom transactions with specific inputs, outputs, witnesses, etc. In the next chapter, we will show how to use the Rust SDKs transaction builders to accomplish this.
+到目前为止，我们使用辅助函数创建交易，通过提供者发送它们，并解析结果。然而，有时我们必须制作具有特定输入、输出、见证人等的自定义交易。在下一章中，我们将展示如何使用 Rust SDK 的交易构建器来实现这一点。

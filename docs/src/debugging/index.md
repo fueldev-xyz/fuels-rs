@@ -1,5 +1,5 @@
-# Debugging
+# 调试
 
-> **note** This section is still a work in progress.
+> **注意** 本节仍在不断完善中。
 
-- [The Function Selector](./function-selector.md)
+- [函数选择器](./function-selector.md)

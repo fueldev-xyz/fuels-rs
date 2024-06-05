@@ -1,15 +1,15 @@
-# Interacting with contracts
+# 与合约交互
 
-If you already have a deployed contract and want to call its methods using the SDK,  but without deploying it again, all you need is the contract ID of your deployed contract. You can skip the whole deployment setup and call `::new(contract_id, wallet)` directly. For example:
+如果您已经部署了一个合约，并想使用 SDK 调用其方法，但不想再次部署它，您只需知道您已部署的合约的合约 ID。您可以跳过整个部署设置过程，直接调用 `::new(contract_id, wallet)`。例如：
 
 ```rust,ignore
 {{#include ../../../examples/contracts/src/lib.rs:deployed_contracts}}
 ```
 
-The above example assumes that your contract ID string is encoded in the `bech32` format. You can recognize it by the human-readable-part "fuel" followed by the separator "1". However, when using other Fuel tools, you might end up with a hex-encoded contract ID string. In that case, you can create your contract instance as follows:
+上面的示例假设您的合约 ID 字符串是以 `bech32` 格式编码的。您可以通过人类可读部分 "fuel" 后跟分隔符 "1" 来识别它。然而，当使用其他 Fuel 工具时，您可能会得到一个十六进制编码的合约 ID 字符串。在这种情况下，您可以按以下方式创建您的合约实例：
 
 ```rust,ignore
 {{#include ../../../examples/contracts/src/lib.rs:deployed_contracts_hex}}
 ```
 
-You can learn more about the Fuel SDK `bech32` types [here](../types/bech32.md).
+您可以在此了解有关 Fuel SDK `bech32` 类型的更多信息[此处](../types/bech32.md)。

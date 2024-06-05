@@ -1,6 +1,6 @@
-# The FuelVM binary file
+# FuelVM 二进制文件
 
-The command `forc build` compiles your Sway code and generates the bytecode: the binary code that the Fuel Virtual Machine will interpret. For instance, the smart contract below:
+`forc build` 命令会编译您的 Sway 代码并生成字节码：Fuel 虚拟机将解释的二进制代码。例如，下面的智能合约：
 
 ```Rust
 contract;
@@ -16,7 +16,7 @@ impl MyContract for Contract {
 }
 ```
 
-After `forc build`, will have a binary file that contains:
+经过 `forc build` 后，会得到一个包含以下内容的二进制文件：
 
 ```terminal
 $ cat out/release/my-test.bin
@@ -24,7 +24,7 @@ G4]�]D`I]C�As@
            6]C�$@!QK%
 ```
 
-This seems very unreadable! But, `forc` has a nice interpreter for this bytecode: `forc parse-bytecode`, which will interpret that binary data and output the equivalent FuelVM assembly:
+这看起来非常难以阅读！但是，`forc` 有一个很好的字节码解释器：`forc parse-bytecode`，它将解释该二进制数据并输出等效的 FuelVM 汇编代码：
 
 ```terminal
 $ forc parse-bytecode out/release/my-test.bin
@@ -48,4 +48,4 @@ half-word   byte   op                raw           notes
        16   64     XOR(20, 27, 53)   21 51 bd 4b
 ```
 
-If you want to deploy your smart contract using the SDK, this binary file is important; it's what we'll be sending to the FuelVM in a transaction.
+如果您想要使用 SDK 部署智能合约，这个二进制文件非常重要；这就是我们将在交易中发送到 FuelVM 的内容。
